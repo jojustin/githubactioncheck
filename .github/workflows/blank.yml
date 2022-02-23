@@ -1,12 +1,15 @@
-# This workflow will import configurations, if modified, to IBM Cloud App Configuration service
-#
+# This is a workflow to import configurations to IBM Cloud App Configuration service
 
-name: CI
+name: IBM Cloud App Configuration Sync
+author: Josephine Eskaline Joyce
+description: workflow to import configurations to IBM Cloud App Configuration service
 
 # Controls when the workflow will run
-on: [push]
-
-# Set environment variables for the workflow
+on:
+  # Triggers the workflow on pull request are approved
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
 env:
   IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
   IBM_CLOUD_REGION: au-syd
@@ -14,23 +17,19 @@ env:
   AC_INSTANCE_ID: ${{ secrets.IBM_CLOUD_AC_INSTANCE_ID }}
   CONFIG_FILE_NAME: appconfig.json
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   updateConfig:
-    # The type of runner that the job will run on
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Verify if the file changes
+      # Verify if the configuration file is updated
       - name: Check file change
         id: fileChangeMonitor
         run: |
-          echo $configurationUpdated 
           URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
           FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
           echo $FILES
@@ -39,7 +38,7 @@ jobs:
             echo "Configuration file is updated. "
           fi
           echo "::set-output name=configurationUpdated::$(echo $configurationUpdated)"
-
+      # Install IBM Cloud CLI 
       - name: Install CLI
         id: installCLI
         run: |
@@ -53,8 +52,8 @@ jobs:
           else
              echo "Configuration file is not updated.  No action required"
           fi
-      # App Configuration plugin to be imported
-      - name: AppConfiguration to be imported
+      # App Configuration plugin to import configuration
+      - name: AppConfiguration to import configuration
         run: |
           configurationUpdated=$(echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }})        
           if [ "$configurationUpdated" == "true" ]
