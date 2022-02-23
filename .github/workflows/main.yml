@@ -1,0 +1,22 @@
+name: IBM Cloud App Configuration Sync
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on pull request are approved
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
+env:
+  IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+  IBM_CLOUD_REGION: au-syd
+  IBM_CLOUD_RESOURCE_GROUP: default
+  AC_INSTANCE_ID: ${{ secrets.IBM_CLOUD_AC_INSTANCE_ID }}
+  CONFIG_FILE_NAME: appconfig.json
+
+jobs:
+  updateConfig:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/ibm-cloud-app-configuration-sync
+      
