@@ -55,13 +55,8 @@ jobs:
           else
              echo "Configuration file is not updated.  No action required"
           fi
-      # Authenticate with IBM Cloud CLI
-      - name: Authenticate with IBM Cloud CLI
+      # App Configuration plugin to import
+      - name: AppConfiguration plugin to import
         run: |
           ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${IBM_CLOUD_RESOURCE_GROUP}" 
-          ibmcloud cr region-set "${IBM_CLOUD_REGION}"
-          ibmcloud cr login
-      # Deploy the Docker image to the IKS cluster
-      - name: Deploy to IKS
-        run: |
           ibmcloud ac init --instance_id "${AC_INSTANCE_ID}"
