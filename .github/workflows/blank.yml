@@ -41,6 +41,8 @@ jobs:
             echo "no json file changed!!"
           fi
           echo "---in the last of the first job $configurationUpdated"
+          Write-Output "::set-output name=configurationUpdated::$configurationUpdated"
       - name: Install CLI
+        id: installCLI
         run: |
-          echo ${{ jobs.updateConfig.steps.fileChangeMonitor.env.configurationUpdated }}
+          echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }}
