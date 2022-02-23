@@ -31,11 +31,11 @@ jobs:
           echo $FILES
           if echo $FILES | grep -q ".json"; then
             echo "json file changed!!"
-            echo "::set-output name=configurationUpdated::true"
-         
+            configurationUpdated=true
           fi
           # echo "---in the last of the first job $configurationUpdated"
-          
+          echo "::set-output name=configurationUpdated::$(echo $configurationUpdated)"
+
       - name: Install CLI
         id: installCLI
         run: |
