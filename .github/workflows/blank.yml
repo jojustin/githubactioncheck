@@ -45,7 +45,6 @@ jobs:
       - name: Install CLI
         id: installCLI
         run: |
-          echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }}
           configurationUpdated=$(echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }})
           if [ "$configurationUpdated" == "true" ]
           then
@@ -59,6 +58,7 @@ jobs:
       # App Configuration plugin to be imported
       - name: AppConfiguration to be imported
         run: |
+          configurationUpdated=$(echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }})        
           if [ "$configurationUpdated" == "true" ]
           then
              ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${IBM_CLOUD_RESOURCE_GROUP}" 
