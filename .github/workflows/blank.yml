@@ -10,7 +10,7 @@ on:
     types: [ closed ]
 env:
   IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
-  IBM_CLOUD_REGION: us-south
+  IBM_CLOUD_REGION: au-syd
   IBM_CLOUD_RESOURCE_GROUP: default
   AC_INSTANCE_ID: ${{ secrets.IBM_CLOUD_AC_INSTANCE_ID }}
 
