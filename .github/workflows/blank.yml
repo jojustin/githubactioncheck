@@ -17,6 +17,7 @@ env:
 
 jobs:
   updateConfig:
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
 
     steps:
@@ -27,9 +28,10 @@ jobs:
       - name: Check file change
         id: fileChangeMonitor
         run: |
+          configurationUpdated=false
           URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
           FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
-          echo $FILES
+          echo "Files are ------ $FILES"
           if echo $FILES | grep -q "$CONFIG_FILE_NAME"; then
             configurationUpdated=true
             echo "Configuration file is updated. "
