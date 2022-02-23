@@ -1,8 +1,6 @@
 # This is a workflow to import configurations to IBM Cloud App Configuration service
 
 name: IBM Cloud App Configuration Sync
-author: Josephine Eskaline Joyce
-description: workflow to import configurations to IBM Cloud App Configuration service
 
 # Controls when the workflow will run
 on:
@@ -19,7 +17,6 @@ env:
 
 jobs:
   updateConfig:
-    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
 
     steps:
