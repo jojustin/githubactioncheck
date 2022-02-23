@@ -1,1 +1,500 @@
 
+{
+    "environments": [
+        {
+            "name": "Dev",
+            "environment_id": "dev",
+            "description": "Environment created on instance creation",
+            "tags": "",
+            "color_code": "#3a64fd",
+            "features": [
+                {
+                    "name": "Cloudant Secret Ref",
+                    "feature_id": "cloudant-secret-ref",
+                    "description": "",
+                    "tags": "",
+                    "type": "STRING",
+                    "format": "TEXT",
+                    "enabled_value": "fa325b34-51ba-8391-9d2b-e62937ec347c",
+                    "disabled_value": "fa325b34-51ba-8391-9d2b-e62937ec347c",
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "app-configuration-demo-md",
+                            "name": "App Configuration Demo"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": true
+                },
+                {
+                    "name": "advanced health status",
+                    "feature_id": "advanced-health-status",
+                    "description": "",
+                    "tags": "",
+                    "type": "BOOLEAN",
+                    "enabled_value": true,
+                    "disabled_value": false,
+                    "segment_rules": [],
+                    "collections": [],
+                    "enabled": false,
+                    "isOverridden": true
+                },
+                {
+                    "name": "discount for flight booking",
+                    "feature_id": "discount-for-flight-booking",
+                    "description": "",
+                    "tags": "",
+                    "type": "NUMERIC",
+                    "enabled_value": 5,
+                    "disabled_value": 0,
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "bluecharge-app",
+                            "name": "Bluecharge App"
+                        }
+                    ],
+                    "enabled": true,
+                    "isOverridden": true
+                },
+                {
+                    "name": "flight booking",
+                    "feature_id": "flight-booking",
+                    "description": "",
+                    "tags": "",
+                    "type": "BOOLEAN",
+                    "enabled_value": true,
+                    "disabled_value": false,
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "bluecharge-app",
+                            "name": "Bluecharge App"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": true
+                },
+                {
+                    "name": "logo image",
+                    "feature_id": "logo-image",
+                    "description": "",
+                    "tags": "",
+                    "type": "STRING",
+                    "format": "TEXT",
+                    "enabled_value": "mandrill.png",
+                    "disabled_value": "logo.png",
+                    "segment_rules": [
+                        {
+                            "rules": [
+                                {
+                                    "segments": [
+                                        "kqacz7ip"
+                                    ]
+                                }
+                            ],
+                            "value": "bangalore.png",
+                            "order": 1
+                        }
+                    ],
+                    "collections": [
+                        {
+                            "collection_id": "app-configuration-demo-md",
+                            "name": "App Configuration Demo"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": true
+                },
+                {
+                    "name": "new navigation menu",
+                    "feature_id": "new-navigation-menu",
+                    "description": "",
+                    "tags": "",
+                    "type": "BOOLEAN",
+                    "enabled_value": true,
+                    "disabled_value": false,
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "bluecharge-app",
+                            "name": "Bluecharge App"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": true
+                }
+            ],
+            "properties": [
+                {
+                    "name": "DB for App Data",
+                    "property_id": "db-for-app-data",
+                    "description": "",
+                    "tags": "",
+                    "type": "STRING",
+                    "format": "TEXT",
+                    "value": "https://appDBURL",
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "app-configuration-demo-md",
+                            "name": "App Configuration Demo"
+                        }
+                    ],
+                    "isOverridden": true
+                }
+            ]
+        },
+        {
+            "name": "Prod",
+            "environment_id": "prod",
+            "description": "",
+            "tags": "",
+            "color_code": "#3afd61",
+            "features": [
+                {
+                    "name": "Cloudant Secret Ref",
+                    "feature_id": "cloudant-secret-ref",
+                    "description": "",
+                    "type": "STRING",
+                    "format": "TEXT",
+                    "enabled_value": "",
+                    "disabled_value": "",
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "app-configuration-demo-md",
+                            "name": "App Configuration Demo"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": false
+                },
+                {
+                    "name": "advanced health status",
+                    "feature_id": "advanced-health-status",
+                    "description": "",
+                    "type": "BOOLEAN",
+                    "enabled_value": false,
+                    "disabled_value": false,
+                    "segment_rules": [],
+                    "collections": [],
+                    "enabled": false,
+                    "isOverridden": false
+                },
+                {
+                    "name": "discount for flight booking",
+                    "feature_id": "discount-for-flight-booking",
+                    "description": "",
+                    "type": "NUMERIC",
+                    "enabled_value": 0,
+                    "disabled_value": 0,
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "bluecharge-app",
+                            "name": "Bluecharge App"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": false
+                },
+                {
+                    "name": "flight booking",
+                    "feature_id": "flight-booking",
+                    "description": "",
+                    "type": "BOOLEAN",
+                    "enabled_value": false,
+                    "disabled_value": false,
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "bluecharge-app",
+                            "name": "Bluecharge App"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": false
+                },
+                {
+                    "name": "logo image",
+                    "feature_id": "logo-image",
+                    "description": "",
+                    "tags": "",
+                    "type": "STRING",
+                    "format": "TEXT",
+                    "enabled_value": "logo.png",
+                    "disabled_value": "logo.png",
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "app-configuration-demo-md",
+                            "name": "App Configuration Demo"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": true
+                },
+                {
+                    "name": "new navigation menu",
+                    "feature_id": "new-navigation-menu",
+                    "description": "",
+                    "type": "BOOLEAN",
+                    "enabled_value": false,
+                    "disabled_value": false,
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "bluecharge-app",
+                            "name": "Bluecharge App"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": false
+                }
+            ],
+            "properties": [
+                {
+                    "name": "DB for App Data",
+                    "property_id": "db-for-app-data",
+                    "description": "",
+                    "type": "STRING",
+                    "format": "TEXT",
+                    "value": "",
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "app-configuration-demo-md",
+                            "name": "App Configuration Demo"
+                        }
+                    ],
+                    "isOverridden": false
+                }
+            ]
+        },
+        {
+            "name": "Staging",
+            "environment_id": "staging",
+            "description": "",
+            "tags": "",
+            "color_code": "#FDD13A",
+            "features": [
+                {
+                    "name": "Cloudant Secret Ref",
+                    "feature_id": "cloudant-secret-ref",
+                    "description": "",
+                    "type": "STRING",
+                    "format": "TEXT",
+                    "enabled_value": "",
+                    "disabled_value": "",
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "app-configuration-demo-md",
+                            "name": "App Configuration Demo"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": false
+                },
+                {
+                    "name": "advanced health status",
+                    "feature_id": "advanced-health-status",
+                    "description": "",
+                    "type": "BOOLEAN",
+                    "enabled_value": false,
+                    "disabled_value": false,
+                    "segment_rules": [],
+                    "collections": [],
+                    "enabled": false,
+                    "isOverridden": false
+                },
+                {
+                    "name": "discount for flight booking",
+                    "feature_id": "discount-for-flight-booking",
+                    "description": "",
+                    "type": "NUMERIC",
+                    "enabled_value": 0,
+                    "disabled_value": 0,
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "bluecharge-app",
+                            "name": "Bluecharge App"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": false
+                },
+                {
+                    "name": "flight booking",
+                    "feature_id": "flight-booking",
+                    "description": "",
+                    "type": "BOOLEAN",
+                    "enabled_value": false,
+                    "disabled_value": false,
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "bluecharge-app",
+                            "name": "Bluecharge App"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": false
+                },
+                {
+                    "name": "logo image",
+                    "feature_id": "logo-image",
+                    "description": "",
+                    "type": "STRING",
+                    "format": "TEXT",
+                    "enabled_value": "",
+                    "disabled_value": "",
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "app-configuration-demo-md",
+                            "name": "App Configuration Demo"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": false
+                },
+                {
+                    "name": "new navigation menu",
+                    "feature_id": "new-navigation-menu",
+                    "description": "",
+                    "type": "BOOLEAN",
+                    "enabled_value": false,
+                    "disabled_value": false,
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "bluecharge-app",
+                            "name": "Bluecharge App"
+                        }
+                    ],
+                    "enabled": false,
+                    "isOverridden": false
+                }
+            ],
+            "properties": [
+                {
+                    "name": "DB for App Data",
+                    "property_id": "db-for-app-data",
+                    "description": "",
+                    "type": "STRING",
+                    "format": "TEXT",
+                    "value": "",
+                    "segment_rules": [],
+                    "collections": [
+                        {
+                            "collection_id": "app-configuration-demo-md",
+                            "name": "App Configuration Demo"
+                        }
+                    ],
+                    "isOverridden": false
+                }
+            ]
+        }
+    ],
+    "collections": [
+        {
+            "name": "App Configuration Demo",
+            "collection_id": "app-configuration-demo-md",
+            "description": "",
+            "tags": ""
+        },
+        {
+            "name": "Bluecharge App",
+            "collection_id": "bluecharge-app",
+            "description": "",
+            "tags": ""
+        },
+        {
+            "name": "Think Lab Collection",
+            "collection_id": "think-lab-collection",
+            "description": "This collection holds flags for the Think 2021 App Configuration lab",
+            "tags": ""
+        }
+    ],
+    "segments": [
+        {
+            "name": "Bangalore Segment",
+            "segment_id": "kqacz7ip",
+            "description": "",
+            "tags": "",
+            "rules": [
+                {
+                    "values": [
+                        "Bangalore"
+                    ],
+                    "operator": "contains",
+                    "attribute_name": "city"
+                }
+            ]
+        },
+        {
+            "name": "Empire Segment",
+            "segment_id": "klqsln5h",
+            "description": "",
+            "tags": "",
+            "rules": [
+                {
+                    "values": [
+                        "empire"
+                    ],
+                    "operator": "contains",
+                    "attribute_name": "favoriteGame"
+                }
+            ]
+        },
+        {
+            "name": "Zork Segment",
+            "segment_id": "kl00bg6r",
+            "description": "",
+            "tags": "",
+            "rules": [
+                {
+                    "values": [
+                        "zork"
+                    ],
+                    "operator": "contains",
+                    "attribute_name": "favoriteGame"
+                }
+            ]
+        },
+        {
+            "name": "Wumpus Segment",
+            "segment_id": "kl00atg1",
+            "description": "",
+            "tags": "",
+            "rules": [
+                {
+                    "values": [
+                        "wumpus"
+                    ],
+                    "operator": "contains",
+                    "attribute_name": "favoriteGame"
+                }
+            ]
+        },
+        {
+            "name": "Bluecharge IBMer",
+            "segment_id": "kl009hle",
+            "description": "",
+            "tags": "",
+            "rules": [
+                {
+                    "values": [
+                        "ibm.com"
+                    ],
+                    "operator": "contains",
+                    "attribute_name": "email"
+                }
+            ]
+        }
+    ]
+}
