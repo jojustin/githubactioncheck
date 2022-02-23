@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: jojustin/IBM-Cloud-App-Configuration-Sync@appconfigsync
+      - uses: jojustin/IBM-Cloud-App-Configuration-Sync@v0.1
         with:
           IBM_CLOUD_REGION: au-syd
           IBM_CLOUD_RESOURCE_GROUP: default
