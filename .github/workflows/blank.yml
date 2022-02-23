@@ -18,7 +18,8 @@ jobs:
   updateConfig:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    outputs:
+      configurationUpdated: ${{ steps.fileChangeMonitor.outputs.configurationUpdated }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -41,8 +42,8 @@ jobs:
             echo "no json file changed!!"
           fi
           echo "---in the last of the first job $configurationUpdated"
-          Write-Output "::set-output name=configurationUpdated::$configurationUpdated"
+          echo "::set-output name=configurationUpdated::$configurationUpdated"
       - name: Install CLI
         id: installCLI
         run: |
-          echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }}
+          echo ${{ needs.updateConfig.outputs.configurationUpdated }}
