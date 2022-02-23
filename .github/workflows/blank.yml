@@ -27,8 +27,6 @@ jobs:
       # Verify if the file changes
       - name: Check file change
         id: fileChangeMonitor
-        env:
-          configurationUpdated: false
         run: |
           echo $configurationUpdated 
           URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
@@ -37,12 +35,14 @@ jobs:
           if echo $FILES | grep -q ".json"; then
             echo "json file changed!!"
             configurationUpdated=true
-          else
-            echo "no json file changed!!"
           fi
           echo "---in the last of the first job $configurationUpdated"
           echo "::set-output name=configurationUpdated::$configurationUpdated"
       - name: Install CLI
         id: installCLI
+        with:
+          configurationUpdated: ${{ steps.fileChangeMonitor.outputs.configurationUpdated }}
+          body: "Test"
         run: |
-          echo $ {{ steps.fileChangeMonitor.outputs.configurationUpdated }}
+          echo $configurationUpdated
+          echo $body
