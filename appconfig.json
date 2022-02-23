@@ -3,7 +3,7 @@
     {
       "name": "Dev",
       "environment_id": "dev",
-      "description": "Environment created on instance creation1123456",
+      "description": "Environment created on instance creation",
       "tags": "",
       "color_code": "#FDD13A",
       "features": [
