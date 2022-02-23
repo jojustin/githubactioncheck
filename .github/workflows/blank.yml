@@ -56,12 +56,14 @@ jobs:
           else
              echo "Configuration file is not updated.  No action required"
           fi
-      # App Configuration plugin to import
-      - name: AppConfiguration plugin to import
+      # App Configuration plugin to be imported
+      - name: AppConfiguration to be imported
         run: |
           if [ "$configurationUpdated" == "true" ]
           then
              ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${IBM_CLOUD_RESOURCE_GROUP}" 
              ibmcloud ac init --instance_id "${AC_INSTANCE_ID}"
              ibmcloud ac import --file ./appconfig.json --clean CLEAN
+          else
+             echo "Configuration file is not updated.  No action required"
           fi
