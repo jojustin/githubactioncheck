@@ -8,6 +8,11 @@ on:
   pull_request:
     branches: [ main ]
     types: [ closed ]
+env:
+  IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+  IBM_CLOUD_REGION: us-south
+  IBM_CLOUD_RESOURCE_GROUP: default
+  AC_INSTANCE_ID: ${{ secrets.IBM_CLOUD_AC_INSTANCE_ID }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -50,3 +55,13 @@ jobs:
           else
              echo "Configuration file is not updated.  No action required"
           fi
+      # Authenticate with IBM Cloud CLI
+      - name: Authenticate with IBM Cloud CLI
+        run: |
+          ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${IBM_CLOUD_RESOURCE_GROUP}" 
+          ibmcloud cr region-set "${IBM_CLOUD_REGION}"
+          ibmcloud cr login
+      # Deploy the Docker image to the IKS cluster
+      - name: Deploy to IKS
+        run: |
+          ibmcloud ac init --instance_id "${AC_INSTANCE_ID}"
