@@ -24,18 +24,21 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Verify if the file changes
+      - name: Check file change
+        id: fileChangeMonitor
         run: |
           URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
           FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
           echo $FILES
           if echo $FILES | grep -q ".json"; then
             echo "json file changed!!"
+            configurationUpdated=true
           else
             echo "no json file changed!!"
           fi
+      - name: Install CLI
+        with:
+          configurationUpdated: ${{ steps.fileChangeMonitor.configurationUpdated }}
+        run: |
+          echo $configurationUpdated  
