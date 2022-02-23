@@ -13,6 +13,7 @@ env:
   IBM_CLOUD_REGION: au-syd
   IBM_CLOUD_RESOURCE_GROUP: default
   AC_INSTANCE_ID: ${{ secrets.IBM_CLOUD_AC_INSTANCE_ID }}
+  CONFIG_FILE_NAME: appconfig.json
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,7 +35,7 @@ jobs:
           URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
           FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
           echo $FILES
-          if echo $FILES | grep -q ".json"; then
+          if echo $FILES | grep -q "$CONFIG_FILE_NAME"; then
             echo "json file changed!!"
             configurationUpdated=true
           fi
@@ -46,7 +47,6 @@ jobs:
         run: |
           echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }}
           configurationUpdated=$(echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }})
-          echo "------configurationUpdated $configurationUpdated"
           if $configurationUpdated; then
              curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
              ibmcloud --version
@@ -58,6 +58,8 @@ jobs:
       # App Configuration plugin to import
       - name: AppConfiguration plugin to import
         run: |
-          ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${IBM_CLOUD_RESOURCE_GROUP}" 
-          ibmcloud ac init --instance_id "${AC_INSTANCE_ID}"
-          ibmcloud ac import --file ./appconfig.json --clean true
+          if $configurationUpdated; then
+             ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${IBM_CLOUD_RESOURCE_GROUP}" 
+             ibmcloud ac init --instance_id "${AC_INSTANCE_ID}"
+             ibmcloud ac import --file ./appconfig.json --clean CLEAN
+          fi
