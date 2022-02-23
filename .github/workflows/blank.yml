@@ -36,10 +36,9 @@ jobs:
           FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
           echo $FILES
           if echo $FILES | grep -q "$CONFIG_FILE_NAME"; then
-            echo "json file changed!!"
             configurationUpdated=true
+            echo "Configuration file is updated. "
           fi
-          # echo "---in the last of the first job $configurationUpdated"
           echo "::set-output name=configurationUpdated::$(echo $configurationUpdated)"
 
       - name: Install CLI
