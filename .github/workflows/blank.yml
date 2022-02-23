@@ -43,7 +43,7 @@ jobs:
           configurationUpdated=$(echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }})
           echo "------configurationUpdated $configurationUpdated"
           if $configurationUpdated; then
-             url -fsSL https://clis.cloud.ibm.com/install/linux | sh
+             curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
              ibmcloud --version
              ibmcloud config --check-version=false
              ibmcloud plugin install app-configuration
