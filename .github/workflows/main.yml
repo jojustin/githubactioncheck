@@ -18,5 +18,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/ibm-cloud-app-configuration-sync
+      - uses: jojustin/ibm-cloud-app-configuration-sync
       
