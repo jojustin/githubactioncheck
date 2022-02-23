@@ -11,7 +11,7 @@ env:
   IBM_CLOUD_REGION: au-syd
   IBM_CLOUD_RESOURCE_GROUP: default
   AC_INSTANCE_ID: ${{ secrets.IBM_CLOUD_AC_INSTANCE_ID }}
-  CONFIG_FILE_NAME: appconfig.json
+  CONFIG_FILE_NAME: 'appconfig.json'
 
 jobs:
   updateConfig:
