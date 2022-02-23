@@ -43,4 +43,4 @@ jobs:
           echo "---in the last of the first job $configurationUpdated"
       - name: Install CLI
         run: |
-          echo $jobs.updateConfig.steps.fileChangeMonitor.env.configurationUpdated
+          echo ${{ jobs.updateConfig.steps.fileChangeMonitor.env.configurationUpdated }}
