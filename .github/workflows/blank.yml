@@ -47,7 +47,8 @@ jobs:
         run: |
           echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }}
           configurationUpdated=$(echo ${{ steps.fileChangeMonitor.outputs.configurationUpdated }})
-          if $configurationUpdated; then
+          if [ "$configurationUpdated" == "true" ]
+          then
              curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
              ibmcloud --version
              ibmcloud config --check-version=false
@@ -58,7 +59,8 @@ jobs:
       # App Configuration plugin to import
       - name: AppConfiguration plugin to import
         run: |
-          if $configurationUpdated; then
+          if [ "$configurationUpdated" == "true" ]
+          then
              ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${IBM_CLOUD_RESOURCE_GROUP}" 
              ibmcloud ac init --instance_id "${AC_INSTANCE_ID}"
              ibmcloud ac import --file ./appconfig.json --clean CLEAN
