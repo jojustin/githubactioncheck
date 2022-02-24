@@ -3,7 +3,7 @@
     {
       "name": "Dev",
       "environment_id": "dev",
-      "description": "Dev Environment - default",
+      "description": "Dev Environment - default environment",
       "tags": "",
       "color_code": "#FDD13A",
       "features": [
